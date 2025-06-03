@@ -1,0 +1,82 @@
+
+[project]
+name = "django-configurator"
+version="1.0.0"
+description = "Supports using class based settings for  Django and supports various setting object types with validation.."
+readme = "README.rst"
+authors = [
+    {name = "Christopher Broderick", email = "chris@uhurutechnology.com"},
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Framework :: Django",
+    "Framework :: Django :: 4.1",
+    "Framework :: Django :: 4.2",
+    "Framework :: Django :: 5.0",
+    "Framework :: Django :: 5.1",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Topic :: Utilities",
+]
+requires-python = ">=3.10, <4.0"
+dependencies = [
+    "django>=4.1",
+]
+license = {text = "BSD"}
+
+[dependency-groups]
+test = [
+    "tox-uv>=1.26.0",
+    "tox[tox-uv]>=4.26.0",
+]
+
+[project.urls]
+Homepage = "https://django-configurator.readthedocs.io/"
+Source = "https://github.com/UhuruTechnology/django-configurator"
+
+[project.optional-dependencies]
+cache = [
+    "django-cache-url",
+]
+database = [
+    "dj-database-url",
+]
+email = [
+    "dj-email-url",
+]
+search = [
+    "dj-search-url",
+]
+testing = [
+    "dj-database-url",
+    "dj-email-url",
+    "dj-search-url",
+    "django-cache-url>=1.0.0",
+]
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.pdm.build]
+package-dir = "src"
+includes = ["src", "src/dj_configurator"]
+excludes = [
+    ".venv",
+    "tests",
+]
+
+[project.scripts]
+django-cadmin = "dj_configurator.management:execute_from_command_line"
+
+[tool.ruff]
+exclude = [".venv", "migrations", "docs"]
