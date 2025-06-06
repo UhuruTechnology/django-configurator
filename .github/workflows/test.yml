@@ -47,7 +47,7 @@ jobs:
 
       - name: Tox tests
         run: |
-          tox --verbose
+          uv run tox --verbose
 
       - name: Upload code coverage for ref branch
         uses: actions/upload-artifact@v4
