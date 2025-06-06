@@ -30,8 +30,17 @@ def install(check_options=False):
 
         def create_parser(self, prog_name, subcommand):
             settingsParser = CommandParser(add_help=False)
-            settingsParser.add_argument(CONFIGURATION_ARGUMENT, help=CONFIGURATION_ARGUMENT_HELP)
-            parser = orig_create_parser(self, prog_name, subcommand, parents=[settingsParser,])
+            settingsParser.add_argument(
+                CONFIGURATION_ARGUMENT, help=CONFIGURATION_ARGUMENT_HELP
+            )
+            parser = orig_create_parser(
+                self,
+                prog_name,
+                subcommand,
+                parents=[
+                    settingsParser,
+                ],
+            )
             return parser
 
         base.BaseCommand.create_parser = create_parser
