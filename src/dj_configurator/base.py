@@ -122,6 +122,7 @@ class Configuration(metaclass=ConfigurationBase):
         if not dotenv:
             return
 
+        print(f"\n\n*********\nCWD: {os.getcwd()}\n")
         # now check if we can access the file since we know we really want to
         try:
             with open(dotenv, "r") as f:
