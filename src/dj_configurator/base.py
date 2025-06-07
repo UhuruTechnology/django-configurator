@@ -122,6 +122,10 @@ class Configuration(metaclass=ConfigurationBase):
         if not dotenv:
             return
 
+        print(f"\n\n*********\nCWD: {os.getcwd()}\n")
+        print(f"\n\nDIRECTORY LISTING: {os.listdir()}\n")
+        print(f"\tTESTS: {os.listdir('tests')}\n")
+        print(f"\tSIMPLE_PROJECT: {os.listdir('tests/simple_project')}\n")
         # now check if we can access the file since we know we really want to
         try:
             with open(dotenv, "r") as f:
