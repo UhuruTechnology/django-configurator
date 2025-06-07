@@ -1,8 +1,8 @@
 
 [project]
 name = "django-configurator"
-version="1.0.0"
-description = "Supports using class based settings for  Django and supports various setting object types with validation.."
+version="0.3.0"
+description = "Supports using class based settings for  Django and supports various setting object types with validation. This is a port of the original django-configurations project."
 readme = "README.rst"
 authors = [
     {name = "Christopher Broderick", email = "chris@uhurutechnology.com"},
@@ -35,8 +35,8 @@ license = {text = "BSD"}
 
 [dependency-groups]
 test = [
+    "tox>=4.26.0",
     "tox-uv>=1.26.0",
-    "tox[tox-uv]>=4.26.0",
 ]
 
 [project.urls]
