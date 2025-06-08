@@ -3,7 +3,7 @@ name: Checking Code Structure and Running Tests
 on: [pull_request]
 
 jobs:
-   build:
+   testing:
 
     runs-on: ubuntu-latest
     steps:
@@ -28,7 +28,7 @@ jobs:
 
       - name: Tox tests
         run: |
-          uv run tox --verbose
+          uv run tox --verbose -p 6
 
       - name: Upload code coverage for ref branch
         uses: actions/upload-artifact@v4
