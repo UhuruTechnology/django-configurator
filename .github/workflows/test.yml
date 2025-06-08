@@ -47,7 +47,7 @@ jobs:
 
       - name: Tox tests
         run: |
-          uv run tox --verbose
+          uv run tox --verbose ${{ matrix.python-version }}
 
       - name: Upload code coverage for ref branch
         uses: actions/upload-artifact@v4
