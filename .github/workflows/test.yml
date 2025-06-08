@@ -41,13 +41,13 @@ jobs:
           python -m pip install --upgrade pip
           make develop
 
-      - name: Check lint  ing and formatting
+      - name: Check linting and formatting
         run:
           make checkformat
 
       - name: Tox tests
         run: |
-          uv run tox --verbose
+          uv run tox --verbose ${{ matrix.python-version }}
 
       - name: Upload code coverage for ref branch
         uses: actions/upload-artifact@v4
