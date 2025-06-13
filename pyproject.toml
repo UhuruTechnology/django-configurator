@@ -1,7 +1,7 @@
 
 [project]
 name = "django-configurator"
-version="0.3.0"
+version="1.0.0"
 description = "Supports using class based settings for  Django and supports various setting object types with validation. This is a port of the original django-configurations project."
 readme = "README.rst"
 authors = [

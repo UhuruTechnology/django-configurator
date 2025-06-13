@@ -7,6 +7,10 @@ django-configurator eases Django project configuration by relying
 on the composability of Python classes. It extends the notion of
 Django's module based settings loading with well established
 object oriented programming patterns.
+This is a port of the django-configurations project which is no longer supported.
+To replace django-configurations with this project, search and replace all
+occurrences of "configurations" with "dj_configurator" in your project that you
+were using django-configurations.
 
 Check out the `documentation`_ for more complete examples.
 
