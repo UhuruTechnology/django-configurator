@@ -64,7 +64,7 @@ A ``.env`` file is a ``.ini``-style file. It must contain a list of
    class Dev(Configuration):
        DOTENV = {
             "path": str(os.path.join(BASE_DIR, '.env')),
-            # if True, overriddes previously set environmental variables, if False only sets them if they haven't been set before 
+            # if True, overrides previously set environmental variables, if False only sets them if they haven't been set before 
             "override": True,
             # if True errors if the DOTENV is not found at path, if False return
             "required": False,

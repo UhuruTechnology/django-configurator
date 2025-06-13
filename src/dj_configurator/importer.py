@@ -2,7 +2,6 @@ from importlib.machinery import PathFinder
 import logging
 import os
 import sys
-from optparse import OptionParser, make_option
 
 from django.conf import ENVIRONMENT_VARIABLE as SETTINGS_ENVIRONMENT_VARIABLE
 from django.core.exceptions import ImproperlyConfigured
@@ -10,6 +9,7 @@ from django.core.management import base
 
 from .utils import uppercase_attributes, reraise
 from .values import Value, setup_value
+from django.core.management.base import CommandParser
 
 installed = False
 
@@ -23,30 +23,24 @@ CONFIGURATION_ARGUMENT_HELP = (
 )
 
 
-configuration_options = (
-    make_option(CONFIGURATION_ARGUMENT, help=CONFIGURATION_ARGUMENT_HELP),
-)
-
-
 def install(check_options=False):
     global installed
     if not installed:
         orig_create_parser = base.BaseCommand.create_parser
 
         def create_parser(self, prog_name, subcommand):
-            parser = orig_create_parser(self, prog_name, subcommand)
-            if isinstance(parser, OptionParser):
-                # in case the option_list is set the create_parser
-                # will actually return a OptionParser for backward
-                # compatibility. In that case we should tack our
-                # options on to the end of the parser on the way out.
-                for option in configuration_options:
-                    parser.add_option(option)
-            else:
-                # probably argparse, let's not import argparse though
-                parser.add_argument(
-                    CONFIGURATION_ARGUMENT, help=CONFIGURATION_ARGUMENT_HELP
-                )
+            settingsParser = CommandParser(add_help=False)
+            settingsParser.add_argument(
+                CONFIGURATION_ARGUMENT, help=CONFIGURATION_ARGUMENT_HELP
+            )
+            parser = orig_create_parser(
+                self,
+                prog_name,
+                subcommand,
+                parents=[
+                    settingsParser,
+                ],
+            )
             return parser
 
         base.BaseCommand.create_parser = create_parser
@@ -96,7 +90,7 @@ class ConfigurationFinder(PathFinder):
 
         parser.add_argument("args", nargs="*")  # catch-all
         try:
-            options, args = parser.parse_known_args(self.argv[2:])
+            options, _ = parser.parse_known_args(self.argv[2:])
             if options.configuration:
                 os.environ[self.namevar] = options.configuration
             base.handle_default_options(options)

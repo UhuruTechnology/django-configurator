@@ -86,7 +86,7 @@ Configuration mixins
 
 You might want to apply some configuration values for each and every
 project you're working on without having to repeat yourself. Just define
-a few mixin you re-use multiple times:
+a new mixin you reuse multiple times:
 
 .. code-block:: python
 
