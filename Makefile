@@ -17,6 +17,8 @@ help:
 .PHONY: develop
 develop:
 	$(UV) sync --all-extras --dev --group test
+	$(UV) tool install pre-commit --with pre-commit-uv --force-reinstall
+	pre-commit install
 
 
 #: clean - Basic cleanup, mostly temporary files.
@@ -87,3 +89,4 @@ readme:
 .PHONY: release
 release:
 	$(TOX) -e release
+
