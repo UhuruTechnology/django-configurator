@@ -35,7 +35,6 @@ commands = [
       "--cov-report",
       "xml:{work_dir}{/}coverage.{env_name}.xml",
       "tests",
-      "--run-integration",
     ] },
   ],
   [
