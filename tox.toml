@@ -15,7 +15,6 @@ commands = [
   [
     "pytest",
     { replace = "posargs", extend = true, default = [
-      "--run-integration",
       "--durations",
       "5",
       "--junitxml",
