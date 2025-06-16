@@ -11,6 +11,8 @@ deps = ["pytest", "pytest-django", "pytest-cov"]
 pass_env = ["DIFF_AGAINST", "PYTEST_*", "TOX_GH_MAJOR_MINOR"]
 set_env.COVERAGE_FILE = { replace = "env", name = "COVERAGE_FILE", default = "{work_dir}{/}.coverage.{env_name}" }
 set_env.COVERAGE_FILECOVERAGE_PROCESS_START = "{tox_root}{/}pyproject.toml"
+set_env.DJANGO_CONFIGURATION = { replace = "env", name = "DJANGO_CONFIGURATION", default = "Test" }
+set_env.DJANGO_SETTINGS_MODULE = { replace = "env", name = "DJANGO_SETTINGS_MODULE", default = "tests.settings.main" }
 commands = [
   [
     "pytest",
