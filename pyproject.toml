@@ -1,6 +1,9 @@
 
 [project]
 name = "django-configurator"
+packages = [
+    { include="dj_configurator", from="." },
+]
 version="1.0.0"
 description = "Supports using class based settings for  Django and supports various setting object types with validation. This is a port of the original django-configurations project."
 readme = "README.rst"
@@ -14,6 +17,7 @@ classifiers = [
     "Framework :: Django :: 4.2",
     "Framework :: Django :: 5.0",
     "Framework :: Django :: 5.1",
+    "Framework :: Django :: 5.2",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: BSD License",
     "Operating System :: OS Independent",
