@@ -31,14 +31,14 @@ jobs:
         run: uv tool install --python-preference only-managed --python 3.13 tox --with tox-uv --with tox-gh
       - name: Install pytest
         run: uv tool install pytest
-      - name: Install Python
+      - name: Install Python ${{ matrix.env }}
         if: matrix.env != '3.13'
         run: uv python install --python-preference only-managed ${{ matrix.env }}
-      - name: Setup test suite
+      - name: Setup test suite for Python ${{ matrix.env }}
         run: tox run -vv --notest --skip-missing-interpreters false
         env:
           TOX_GH_MAJOR_MINOR: ${{ matrix.env }}
-      - name: Run test suite
+      - name: Run test suite for Python ${{ matrix.env }}
         run: tox run --skip-pkg-install
         env:
           TOX_GH_MAJOR_MINOR: ${{ matrix.env }}
