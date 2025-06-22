@@ -57,7 +57,7 @@ commands = [["pre-commit", "run", "--all-files", "--show-diff-on-failure", { rep
 
 [env.type]
 description = "run type check on code base"
-deps = ["mypy==1.11.2"]
+deps = ["mypy", "tox_gh"]
 commands = [["mypy", "{env_site_packages_dir}{/}tox_gh"], ["mypy", "tests"]]
 
 [env.pkg_meta]
