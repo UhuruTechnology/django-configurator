@@ -24,8 +24,6 @@ commands = [
       "{work_dir}{/}junit.{env_name}.xml",
       "--no-cov-on-fail",
       "--cov",
-      "{env_site_packages_dir}{/}tox_gh",
-      "--cov",
       "{tox_root}{/}tests",
       "--cov-config",
       "{tox_root}{/}pyproject.toml",
@@ -56,9 +54,9 @@ pass_env = [{ replace = "ref", of = ["env_run_base", "pass_env"], extend = true 
 commands = [["pre-commit", "run", "--all-files", "--show-diff-on-failure", { replace = "posargs" }]]
 
 [env.type]
-description = "run type check on code base"
-deps = ["mypy", "tox_gh"]
-commands = [["mypy", "{env_site_packages_dir}{/}tox_gh"], ["mypy", "tests"]]
+description = "Run type check on code base"
+deps = ["mypy"]
+commands = [["mypy", "tests"]]
 
 [env.pkg_meta]
 description = "check that the long description is valid"
