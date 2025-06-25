@@ -4,7 +4,7 @@ name = "django-configurator"
 packages = [
     { include="dj_configurator", from="." },
 ]
-version="1.0.0"
+version="1.1.0"
 description = "Supports using class based settings for  Django and supports various setting object types with validation. This is a port of the original django-configurations project."
 readme = "README.rst"
 authors = [
