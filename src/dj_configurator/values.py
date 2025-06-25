@@ -3,6 +3,7 @@ import copy
 import decimal
 import os
 import sys
+import typing
 
 from django.core import validators
 from django.core.exceptions import ValidationError, ImproperlyConfigured
@@ -153,7 +154,7 @@ class BooleanValue(Value):
 
 
 class CastingMixin:
-    exception = (TypeError, ValueError)
+    exception: typing.Any = (TypeError, ValueError)
     message = "Cannot interpret value {0!r}"
 
     def __init__(self, *args, **kwargs):
@@ -213,7 +214,8 @@ class SequenceValue(Value):
     """
 
     # Specify this value in subclasses, e.g. with 'list' or 'tuple'
-    sequence_type = None
+    # TODO: make the typing better
+    sequence_type: typing.Optional[typing.Any] = None
     converter = None
 
     def __init__(self, *args, **kwargs):

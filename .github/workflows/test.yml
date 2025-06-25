@@ -29,14 +29,16 @@ jobs:
 
       - name: Install tox
         run: uv tool install --python-preference only-managed --python 3.13 tox --with tox-uv --with tox-gh
-      - name: Install Python
-        if: matrix.env != '3.13'
-        run: uv python install --python-preference only-managed ${{ matrix.env }}
-      - name: Setup test suite
+      - name: Install pytest
+        run: uv tool install pytest
+      - name: Install Python ${{ matrix.python-version }}
+        if: matrix.python-version != '3.13'
+        run: uv python install --python-preference only-managed ${{ matrix.python-version }}
+      - name: Setup test suite for Python ${{ matrix.python-version }}
         run: tox run -vv --notest --skip-missing-interpreters false
         env:
-          TOX_GH_MAJOR_MINOR: ${{ matrix.env }}
-      - name: Run test suite
+          TOX_GH_MAJOR_MINOR: ${{ matrix.python-version }}
+      - name: Run test suite for Python ${{ matrix.python-version }}
         run: tox run --skip-pkg-install
         env:
-          TOX_GH_MAJOR_MINOR: ${{ matrix.env }}
+          TOX_GH_MAJOR_MINOR: ${{ matrix.python-version }}
