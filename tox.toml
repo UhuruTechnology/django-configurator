@@ -56,7 +56,7 @@ commands = [["pre-commit", "run", "--all-files", "--show-diff-on-failure", { rep
 [env.type]
 description = "Run type check on code base"
 deps = ["mypy"]
-commands = [["mypy", "tests"]]
+commands = [["mypy", "--follow-imports", "skip", "--no-site-packages", "--ignore-missing-imports", "src/dj_configurator"]]
 
 [env.pkg_meta]
 description = "check that the long description is valid"
