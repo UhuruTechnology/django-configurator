@@ -40,6 +40,12 @@ license = {text = "BSD"}
 
 [dependency-groups]
 test = [
+    "covdefaults>=2.3",
+    "devpi-process>=1.0.2",
+    "diff-cover>=9.2.2",
+    "pytest>=8.3.4",
+    "pytest-cov>=6",
+    "pytest-mock>=3.14",
     "tox>=4.26.0",
     "tox-uv>=1.26.0",
 ]
