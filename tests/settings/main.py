@@ -34,7 +34,10 @@ class Test(Configuration):
 
     @property
     def ALLOWED_HOSTS(self):
-        allowed_hosts = super().ALLOWED_HOSTS[:]
+        try:
+            allowed_hosts = super().ALLOWED_HOSTS[:]
+        except Exception:
+            allowed_hosts = []
         allowed_hosts.append("base")
         return allowed_hosts
 

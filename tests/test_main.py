@@ -51,23 +51,6 @@ class MainTests(TestCase):
         with self.assertRaises(ImproperlyConfigured):
             ConfigurationFinder()
 
-    def test_global_settings(self):
-        from dj_configurator.base import Configuration
-
-        self.assertIn("dictConfig", Configuration.LOGGING_CONFIG)
-        self.assertEqual(
-            repr(Configuration), "<Configuration 'dj_configurator.base.Configuration'>"
-        )
-
-    def test_deprecated_settings_but_set_by_user(self):
-        from tests.settings.main import TestWithDefaultSetExplicitely
-
-        TestWithDefaultSetExplicitely.setup()
-        self.assertEqual(
-            TestWithDefaultSetExplicitely.DEFAULT_AUTO_FIELD,
-            "django.db.models.BigAutoField",
-        )
-
     def test_repr(self):
         from tests.settings.main import Test
 

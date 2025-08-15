@@ -21,6 +21,12 @@ develop:
 	pre-commit install
 
 
+#: sync - Synchronise the envoronment with the project configuration
+.PHONY: sync
+sync:
+	$(UV) sync --all-extras --dev --group test
+
+
 #: clean - Basic cleanup, mostly temporary files.
 .PHONY: clean
 clean:
