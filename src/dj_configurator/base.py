@@ -1,7 +1,6 @@
 import os
 import re
 
-from django.conf import global_settings
 from django.core.exceptions import ImproperlyConfigured
 
 from .utils import uppercase_attributes
@@ -27,38 +26,6 @@ class ConfigurationBase(type):
 
             if not importer.installed:
                 raise ImproperlyConfigured(install_failure)
-        settings_vars = uppercase_attributes(global_settings)
-        deprecated_settings = {
-            # DEFAULT_HASHING_ALGORITHM is always deprecated, as it's a
-            # transitional setting
-            # https://docs.djangoproject.com/en/3.1/releases/3.1/#default-hashing-algorithm-settings
-            "DEFAULT_HASHING_ALGORITHM",
-            # DEFAULT_CONTENT_TYPE and FILE_CHARSET are deprecated in
-            # Django 2.2 and are removed in Django 3.0
-            "DEFAULT_CONTENT_TYPE",
-            "FILE_CHARSET",
-            # When DEFAULT_AUTO_FIELD is not explicitly set, Django's emits a
-            # system check warning models.W042. This warning should not be
-            # suppressed, as downstream users are expected to make a decision.
-            # https://docs.djangoproject.com/en/3.2/releases/3.2/#customizing-type-of-auto-created-primary-keys
-            "DEFAULT_AUTO_FIELD",
-        }
-        # PASSWORD_RESET_TIMEOUT_DAYS is deprecated in favor of
-        # PASSWORD_RESET_TIMEOUT in Django 3.1
-        # https://github.com/django/django/commit/226ebb17290b604ef29e82fb5c1fbac3594ac163#diff-ec2bed07bb264cb95a80f08d71a47c06R163-R170
-        if "PASSWORD_RESET_TIMEOUT" in settings_vars:
-            deprecated_settings.add("PASSWORD_RESET_TIMEOUT_DAYS")
-        # DEFAULT_FILE_STORAGE and STATICFILES_STORAGE are deprecated
-        # in favor of STORAGES.
-        # https://docs.djangoproject.com/en/dev/releases/4.2/#custom-file-storages
-        if "STORAGES" in settings_vars:
-            deprecated_settings.add("DEFAULT_FILE_STORAGE")
-            deprecated_settings.add("STATICFILES_STORAGE")
-        for deprecated_setting in deprecated_settings:
-            if deprecated_setting in settings_vars:
-                del settings_vars[deprecated_setting]
-        attrs = {**settings_vars, **attrs}
-
         return super().__new__(cls, name, bases, attrs)
 
     def __repr__(self):
